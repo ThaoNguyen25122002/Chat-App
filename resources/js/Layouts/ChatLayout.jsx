@@ -16,8 +16,8 @@ const ChatLayout = ({ children }) => {
         return onlineUsers[userId];
     };
     // console.log(isUserOnline(1));
-    console.log(onlineUsers);
-    console.log(conversations);
+    // console.log(onlineUsers);
+    // console.log(conversations);
     // console.log(isUserOnline(onlineUsers[1]));
 
     const onSearch = (ev) => {
@@ -56,7 +56,9 @@ const ChatLayout = ({ children }) => {
     useEffect(() => {
         setLocalConversations(conversations);
     }, [conversations]);
-
+    if (sortedConversations) {
+        console.log(sortedConversations);
+    }
     useEffect(() => {
         Echo.join("online")
             .here((users) => {
@@ -101,7 +103,7 @@ const ChatLayout = ({ children }) => {
                         selectedConversation ? "-ml-[100%] sm:ml-0" : ""
                     }`}
                 >
-                    <div className="flex items-center justify-between px-3 py-2 text-xl font-medium ">
+                    <div className="flex items-center justify-between px-3 py-2 text-xl font-medium text-gray-200">
                         My Conversations
                         <div
                             className="tooltip tooltip-left"
