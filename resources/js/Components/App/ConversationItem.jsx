@@ -8,7 +8,7 @@ const ConversationItem = ({
     selectedConversation,
     online = null,
 }) => {
-    // console.log(online);
+    // console.log(selectedConversation, conversation);
     const page = usePage();
     const currentUser = page.props.auth.user;
     let classes = "border-transparent";
@@ -18,14 +18,14 @@ const ConversationItem = ({
             !conversation.is_group &&
             selectedConversation.id == conversation.id
         ) {
-            classes = "border-blue-500 bg-black/20";
+            classes = " border-blue-500 bg-black/30 ";
         }
         if (
             selectedConversation.is_group &&
             conversation.is_group &&
             selectedConversation.id == conversation.id
         ) {
-            classes = "border-blue-500 bg-black/20";
+            classes = " border-blue-500 bg-black/30 ";
         }
     }
     return (
@@ -52,7 +52,7 @@ const ConversationItem = ({
                 className={
                     `flex-1 text-xs max-w-full overflow-hidden` +
                     (conversation.is_user && conversation.blocked_at
-                        ? "opacity-50"
+                        ? " opacity-50"
                         : "")
                 }
             >

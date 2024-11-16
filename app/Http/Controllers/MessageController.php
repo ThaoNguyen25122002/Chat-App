@@ -23,7 +23,7 @@ class MessageController extends Controller
             ->where('receiver_id',auth()->id())
             ->latest()
             ->paginate(10);
-        
+        // dd(MessageResource::collection($messages));
         return inertia('Home',[
             'selectedConversation' => $user->toConversationArray(),
             'messages' => MessageResource::collection($messages),

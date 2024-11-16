@@ -10,16 +10,12 @@ const ChatLayout = ({ children }) => {
     const [localConversations, setLocalConversations] = useState([]);
     const [sortedConversations, setSortedConversations] = useState([]);
     const [onlineUsers, setOnlineUsers] = useState({});
-    // console.log(conversations);
-    // console.log(selectedConversation);
     const isUserOnline = (userId) => {
         return onlineUsers[userId];
     };
-    // console.log(isUserOnline(1));
-    // console.log(onlineUsers);
-    // console.log(conversations);
-    // console.log(isUserOnline(onlineUsers[1]));
-
+    if (sortedConversations) {
+        console.log(sortedConversations);
+    }
     const onSearch = (ev) => {
         const search = ev.target.value.toLowerCase();
         setLocalConversations(
