@@ -13,9 +13,7 @@ const ChatLayout = ({ children }) => {
     const isUserOnline = (userId) => {
         return onlineUsers[userId];
     };
-    if (sortedConversations) {
-        console.log(sortedConversations);
-    }
+
     const onSearch = (ev) => {
         const search = ev.target.value.toLowerCase();
         setLocalConversations(
@@ -52,9 +50,7 @@ const ChatLayout = ({ children }) => {
     useEffect(() => {
         setLocalConversations(conversations);
     }, [conversations]);
-    if (sortedConversations) {
-        console.log(sortedConversations);
-    }
+
     useEffect(() => {
         Echo.join("online")
             .here((users) => {

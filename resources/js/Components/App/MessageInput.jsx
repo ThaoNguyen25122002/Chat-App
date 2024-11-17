@@ -36,7 +36,7 @@ const MessageInput = ({ conversation = null }) => {
             .post(route("message.store"), formData, {
                 onUploadProgress: (progressEvent) => {
                     const progress = Math.round(
-                        (progress.loaded / progressEvent.total) * 100
+                        (progressEvent.loaded / progressEvent.total) * 100
                     );
                     console.log(progress);
                 },

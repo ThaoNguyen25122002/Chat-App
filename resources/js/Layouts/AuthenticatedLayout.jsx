@@ -2,14 +2,17 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { useEventBus } from "@/EventBus";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 export default function AuthenticatedLayout({ header, children }) {
-    const user = usePage().props.auth.user;
-    const conversations = usePage().props.conversations;
+    const page = usePage();
+    const user = page.props.auth.user;
+    const conversations = page.props.conversations;
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+    const { emit } = useEventBus();
     useEffect(() => {
         conversations.forEach((conversation) => {
             let channel = `message.group.${conversation.id}`;
@@ -21,11 +24,13 @@ export default function AuthenticatedLayout({ header, children }) {
                     .sort((a, b) => a - b)
                     .join("-")}`;
             }
+            console.log(channel);
             Echo.private(channel)
+
                 .error((error) => {
                     console.log(error);
                 })
-                .listen("socketMessage", (e) => {
+                .listen("SocketMessage", (e) => {
                     console.log("SocketMessage", e);
                     const message = e.message;
                     emit("message.created", message);
